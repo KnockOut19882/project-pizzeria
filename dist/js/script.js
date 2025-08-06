@@ -103,6 +103,7 @@ class Product {
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
     initAccordion() {
       const thisProduct = this;
@@ -159,11 +160,20 @@ class Product {
           console.log(optionId, option);
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
           console.log('optionSelected', optionSelected);
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
           if(optionSelected && !option.default) {
             price += option.price;
           }
           else if(!optionSelected && option.default) {
             price -= option.price;
+          }
+          if(optionImage) {
+            if(optionSelected) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+
           }
         }
       }
