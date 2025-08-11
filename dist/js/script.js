@@ -257,7 +257,6 @@ class Product {
     }
     addToCart() {
       const thisProduct = this;
-      app.cart.add(thisProduct);
       console.log('adding product to cart', thisProduct.prepareCartProduct());
       const productData = thisProduct.prepareCartProduct();
       app.cart.add(productData);
