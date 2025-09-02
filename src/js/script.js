@@ -405,9 +405,15 @@ class Product {
     }
     addToCart() {
       const thisProduct = this;
-      thisProduct.amountWidget.setValue(thisProduct.dom.amountWidget.querySelector('input.amount').value);
-      const productData = thisProduct.prepareCartProduct();
-      app.cart.add(productData);
+      app.cart.add(thisProduct.prepareCartProduct());
+      const event = new CustomEvent('add-to-cart', {
+      bubbles: true,
+      detail: {
+      product: thisProduct.prepareCartProduct(),
+      },
+      }
+      );
+      thisProduct.element.dispatchEvent(event);
     }
     prepareCartProduct() {
       const thisProduct = this;
