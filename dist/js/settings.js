@@ -23,6 +23,9 @@ export const select = {
       amountWidget: '.widget-amount',
       cartButton: '[href="#add-to-cart"]',
     },
+    nav: {
+        links: '.main-nav a',
+      },
     widgets: {
       amount: {
         input: 'input.amount',
@@ -42,9 +45,6 @@ export const select = {
         peopleAmount: '.people-amount',
         hoursAmount: '.hours-amount',
         tables: '.floor-plan .table',
-      },
-      nav: {
-        links: '.main-nav a',
       },
     },
     cart: {
@@ -66,6 +66,7 @@ export const select = {
       remove: '[href="#remove"]',
     },
   };
+
 
 export const classNames = {
     menuProduct: {
