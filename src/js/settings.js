@@ -47,11 +47,10 @@ export const select = {
         input: 'input[type="range"]',
         output: '.output',
       },
-      
+    },
       nav: {
         links: '.main-nav a',
       },
-    },
     cart: {
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
