@@ -33,6 +33,19 @@ class AmountWidget {
       thisWidget.input.value = thisWidget.value;
     }
 
+    isValid(value) {
+      return !isNaN(value)
+      && value >= settings.amountWidget.defaultMin
+      && value <= settings.amountWidget.defaultMax;
+    }
+
+    renderValue() {
+      const thisWidget = this;
+      if(thisWidget.dom.input) {
+        thisWidget.dom.input.value = thisWidget.value;
+      }
+    }
+
     initActions() {
       const thisWidget = this;
       
@@ -42,12 +55,12 @@ class AmountWidget {
       
       thisWidget.linkDecrease.addEventListener('click', function(event) {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1);  // ← UPROSZCZONA logika
+        thisWidget.setValue(thisWidget.value - 1);
       });
       
       thisWidget.linkIncrease.addEventListener('click', function(event) {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value + 1);  // ← UPROSZCZONA logika
+        thisWidget.setValue(thisWidget.value + 1);
       });
     }
 

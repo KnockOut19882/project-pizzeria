@@ -23,9 +23,15 @@ export const select = {
       amountWidget: '.widget-amount',
       cartButton: '[href="#add-to-cart"]',
     },
-    nav: {
-        links: '.main-nav a',
-      },
+
+    booking: {
+      wrapper: '.booking-wrapper',
+      form: '.booking-form',
+      peopleAmount: '.people-amount',
+      hoursAmount: '.hours-amount',
+      tables: '.floor-plan .table',
+    },
+
     widgets: {
       amount: {
         input: 'input.amount',
@@ -41,10 +47,9 @@ export const select = {
         input: 'input[type="range"]',
         output: '.output',
       },
-      booking: {
-        peopleAmount: '.people-amount',
-        hoursAmount: '.hours-amount',
-        tables: '.floor-plan .table',
+      
+      nav: {
+        links: '.main-nav a',
       },
     },
     cart: {
@@ -66,7 +71,6 @@ export const select = {
       remove: '[href="#remove"]',
     },
   };
-
 
 export const classNames = {
     menuProduct: {

@@ -4,6 +4,7 @@ import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 
 const app = {
+
   initBooking: function(){
     const thisApp = this;
     const bookingContainer = document.querySelector(select.containerOf.booking);
@@ -36,6 +37,7 @@ const app = {
       );
     }
   },
+
   initMenu: function() {
       const thisApp = this;
       for(let productData in thisApp.data.products) {
@@ -63,11 +65,10 @@ const app = {
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
-      thisApp.initPages();
       
       thisApp.initData();
       thisApp.initCart();
-      thisApp.initBooking();
+      this.initBooking();
     },
     initCart: function(){
       const thisApp = this;

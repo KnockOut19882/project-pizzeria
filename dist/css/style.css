@@ -29,20 +29,20 @@
     transform: rotateX(0deg);
   }
 }
-.h1, .page__title, .product__base-price, .product__name {
+.h1 {
   font-family: "Oswald", sans-serif;
   font-size: 26px;
   font-weight: 500;
   text-transform: uppercase;
 }
 
-.h2, .floor-plan .table, .booking-option-title, .product__params-title, .main-nav a {
+.h2 {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.h3, .floor-plan .object {
+.h3 {
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
