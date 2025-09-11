@@ -49,4 +49,4 @@ class BaseWidget {
   }
 }
 
-export default BaseWidgets;
+export default BaseWidget;

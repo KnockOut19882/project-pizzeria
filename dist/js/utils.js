@@ -59,9 +59,11 @@ utils.queryParams = function(params){
 encodeURIComponent(params[k]))
  .join('&');
 };
-utils.numberToHour = function(number){
- return (Math.floor(number) % 24) + ':' + (number % 1 * 60 +
-'').padStart(2, '0');
+utils.numberToHour = function(value) {
+  const hour = Math.floor(value);
+  const minutes = Math.round((value - hour) * 60);
+  const minutesStr = minutes < 10 ? '0' + minutes : '' + minutes;
+  return `${hour}.${minutesStr}`;
 };
 utils.hourToNumber = function(hour){
  const parts = hour.split(':');

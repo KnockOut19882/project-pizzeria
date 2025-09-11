@@ -1,6 +1,6 @@
 import {settings} from '../settings.js';
 
-class BaseWidgets {
+class BaseWidget {
   constructor(wrapperElement, initialValue) {
     const thisWidget = this;
     thisWidget.dom = {};
@@ -49,4 +49,4 @@ class BaseWidgets {
   }
 }
 
-export default BaseWidgets;
+export default BaseWidget;
