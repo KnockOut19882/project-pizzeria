@@ -257,9 +257,19 @@
   ],
  "bookings": [
   {
-    "id": 4,
+    "id": 1,
     "date": "2025-09-24",
     "hour": "13:00",
+    "table": 2,
+    "repeat": "daily",
+    "duration": 4,
+    "ppl": 3,
+    "starters": []
+  },
+  {
+    "id": 2,
+    "date": "2025-09-24",
+    "hour": "19:30",
     "table": 2,
     "repeat": "daily",
     "duration": 4,

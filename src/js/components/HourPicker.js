@@ -22,6 +22,8 @@ class HourPicker extends BaseWidget{
       if(thisWidget.dom.output) {
         thisWidget.dom.output.textContent = utils.numberToHour(thisWidget.dom.input.value);
       }
+      thisWidget.value = thisWidget.dom.input.value; // Aktualizuj wartość!
+      thisWidget.announce(); // Emituj event 'updated' po każdej zmianie!
     });
   }
 
@@ -38,6 +40,8 @@ class HourPicker extends BaseWidget{
 
     thisWidget.dom.output.innerHTML = thisWidget.value;
   }
+
+
 }
 
 export default HourPicker;
