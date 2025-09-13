@@ -196,11 +196,18 @@ class Booking {
       thisBooking.updateDOM();
     });
 
-    // Dodaj nasłuchiwacz na kliknięcie w kontenerze ze stolikami
     const tablesContainer = thisBooking.dom.wrapper.querySelector('.floor-plan');
     if (tablesContainer) {
       tablesContainer.addEventListener('click', function(event) {
         thisBooking.initTables(event);
+      });
+    }
+
+    const form = thisBooking.dom.wrapper.querySelector('.booking-form');
+    if(form) {
+      form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisBooking.sendBooking();
       });
     }
   }
@@ -209,11 +216,9 @@ class Booking {
     const thisBooking = this;
     const clickedElem = event.target;
 
-    // Sprawdź, czy kliknięto na stolik
     if (clickedElem.classList.contains('table')) {
       const tableId = clickedElem.getAttribute(settings.booking.tableIdAttribute);
 
-      // Sprawdź, czy stolik jest zajęty
       const isBooked =
         thisBooking.booked &&
         thisBooking.booked[thisBooking.date] &&
@@ -223,19 +228,16 @@ class Booking {
       if (isBooked) {
         alert('Ten stolik jest już zajęty!');
       } else {
-        // Jeśli stolik jest już wybrany (ma klasę selected), odznacz go i wyczyść właściwość
+
         if (clickedElem.classList.contains('selected')) {
           clickedElem.classList.remove('selected');
           thisBooking.selectedTable = null;
           console.log('Odznaczono stolik:', tableId);
         } else {
-          // Usuń klasę selected ze wszystkich stolików
           for (let table of thisBooking.dom.tables) {
             table.classList.remove('selected');
           }
-          // Dodaj klasę selected do klikniętego stolika
           clickedElem.classList.add('selected');
-          // Przypisz numer stolika do właściwości
           thisBooking.selectedTable = tableId;
           console.log('Wybrano stolik:', tableId);
         }
@@ -243,6 +245,47 @@ class Booking {
     }
   }
 
+  sendBooking() {
+    const thisBooking = this;
+
+    const payload = {
+      date: thisBooking.datePicker.value,
+      hour: thisBooking.hourPicker.value,
+      table: thisBooking.selectedTable ? parseInt(thisBooking.selectedTable) : null,
+      duration: thisBooking.hoursAmount ? parseInt(thisBooking.hoursAmount.value) : 1,
+      ppl: thisBooking.peopleAmount ? parseInt(thisBooking.peopleAmount.value) : 1,
+      starters: [],
+      phone: thisBooking.dom.wrapper.querySelector('input[name="phone"]').value,
+      address: thisBooking.dom.wrapper.querySelector('input[name="address"]').value,
+    };
+
+    const starterCheckboxes = thisBooking.dom.wrapper.querySelectorAll('input[name="starter"]:checked');
+    for(let checkbox of starterCheckboxes) {
+      payload.starters.push(checkbox.value);
+    }
+
+    const url = 'http://localhost:3131/bookings';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(() => {
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.updateDOM();
+        alert('Rezerwacja została zapisana!');
+      });
+  }
+
 }
 
 export default Booking;
+
+if (window.location.hash !== '#home') {
+  window.location.hash = '#home';
+}

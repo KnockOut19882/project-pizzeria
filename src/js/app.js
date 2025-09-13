@@ -10,20 +10,27 @@ const app = {
     const bookingContainer = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingContainer);
   },
-  initPages: function(){
+  initPages: function() {
     const thisApp = this;
-    thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.pages = document.querySelectorAll('#pages > section');
+    thisApp.navLinks = document.querySelectorAll('.main-nav a');
 
-    thisApp.activatePage(thisApp.pages[0].id);
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
-        const clickedElement = this;
-        event.preventDefault();
-        const id = clickedElement.getAttribute('href').replace('#', '');
-        thisApp.activatePage(id);
-      });
-    }
+    const activatePage = function(pageId) {
+      for(let page of thisApp.pages){
+        page.classList.toggle(classNames.pages.active, page.id === pageId);
+      }
+      for(let link of thisApp.navLinks){
+        link.classList.toggle(classNames.nav.active, link.getAttribute('href') === '#' + pageId);
+      }
+    };
+
+    window.addEventListener('hashchange', function(){
+      const idFromHash = window.location.hash.replace('#', '');
+      activatePage(idFromHash || 'home');
+    });
+
+    const idFromHash = window.location.hash.replace('#', '');
+    activatePage(idFromHash || 'home');
   },
   activatePage: function(pageId){
     const thisApp = this;
