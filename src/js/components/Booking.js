@@ -71,6 +71,7 @@ class Booking {
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
+
     thisBooking.booked = {};
 
     for (let item of bookings) {
@@ -117,7 +118,7 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    thisBooking.hour = thisBooking.hourPicker.value;
 
     let allAvailable = false;
 
@@ -140,8 +141,13 @@ class Booking {
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ) {
         table.classList.add(classNames.booking.tableBooked);
+        console.log('tableIdAdd', tableId);
       } else {
-        table.classList.remove(classNames.booking.tableBooked);
+       
+        if(table.classList.contains(classNames.booking.tableBooked)){
+          table.classList.remove(classNames.booking.tableBooked);
+          console.log('tableIdRemove', tableId);
+        }
       }
     }
   }
@@ -151,7 +157,7 @@ class Booking {
     const thisBooking = this;
 
     const generatedHTML = templates.bookingWidget();
-    
+
     thisBooking.dom = {};
 
     thisBooking.dom.wrapper = bookingContainer;

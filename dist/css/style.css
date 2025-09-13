@@ -29,14 +29,14 @@
     transform: rotateX(0deg);
   }
 }
-.h1, .page__title {
+.h1, .page__title, .product__base-price, .product__name {
   font-family: "Oswald", sans-serif;
   font-size: 26px;
   font-weight: 500;
   text-transform: uppercase;
 }
 
-.h2, .floor-plan .table, .booking-option-title {
+.h2, .floor-plan .table, .booking-option-title, .product__params-title, .main-nav a {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
