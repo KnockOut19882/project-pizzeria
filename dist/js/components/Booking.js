@@ -6,10 +6,14 @@ import HourPicker from './HourPicker.js';
 
 class Booking {
   constructor(bookingContainer){
+
     const thisBooking = this;
+
+    thisBooking.selectedTable = null;
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
+
   }
 
   getData() {
@@ -152,7 +156,6 @@ class Booking {
     }
   }
 
-
   render(bookingContainer) {
     const thisBooking = this;
 
@@ -170,6 +173,9 @@ class Booking {
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.selectedTable = thisBooking.dom.wrapper.querySelector(select.booking.tables);
+
+
   }
   initWidgets() {
     const thisBooking = this;
@@ -189,7 +195,54 @@ class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
+
+    // Dodaj nasłuchiwacz na kliknięcie w kontenerze ze stolikami
+    const tablesContainer = thisBooking.dom.wrapper.querySelector('.floor-plan');
+    if (tablesContainer) {
+      tablesContainer.addEventListener('click', function(event) {
+        thisBooking.initTables(event);
+      });
+    }
   }
+
+  initTables(event) {
+    const thisBooking = this;
+    const clickedElem = event.target;
+
+    // Sprawdź, czy kliknięto na stolik
+    if (clickedElem.classList.contains('table')) {
+      const tableId = clickedElem.getAttribute(settings.booking.tableIdAttribute);
+
+      // Sprawdź, czy stolik jest zajęty
+      const isBooked =
+        thisBooking.booked &&
+        thisBooking.booked[thisBooking.date] &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour] &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(parseInt(tableId));
+
+      if (isBooked) {
+        alert('Ten stolik jest już zajęty!');
+      } else {
+        // Jeśli stolik jest już wybrany (ma klasę selected), odznacz go i wyczyść właściwość
+        if (clickedElem.classList.contains('selected')) {
+          clickedElem.classList.remove('selected');
+          thisBooking.selectedTable = null;
+          console.log('Odznaczono stolik:', tableId);
+        } else {
+          // Usuń klasę selected ze wszystkich stolików
+          for (let table of thisBooking.dom.tables) {
+            table.classList.remove('selected');
+          }
+          // Dodaj klasę selected do klikniętego stolika
+          clickedElem.classList.add('selected');
+          // Przypisz numer stolika do właściwości
+          thisBooking.selectedTable = tableId;
+          console.log('Wybrano stolik:', tableId);
+        }
+      }
+    }
+  }
+
 }
 
 export default Booking;
