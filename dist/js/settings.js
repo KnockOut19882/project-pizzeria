@@ -3,12 +3,14 @@ export const select = {
     menuProduct: "#template-menu-product",
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
+    homePage: '#template-home-page',
     },
     containerOf: {
       menu: '#product-list',
       cart: '#cart',
       pages: '#pages',
       booking: '.booking-wrapper',
+      home: '#home-wrapper',
     },
     all: {
       menuProducts: '#product-list > .product',
@@ -22,6 +24,17 @@ export const select = {
       imageWrapper: '.product__images',
       amountWidget: '.widget-amount',
       cartButton: '[href="#add-to-cart"]',
+    },
+
+    home: {
+      carousel: '.main-carousel',
+      boxOrder: '.box-one',
+      boxBooking: '.box-two',
+      linkOrder: 'a[href="#order"]',
+      linkBooking: 'a[href="#booking"]',
+      linkOfBox: '.button-link',
+      favoriteSign: '.fa-heart',
+      shareSign: '.fa-share-alt',
     },
 
     booking: {
@@ -79,6 +92,11 @@ export const classNames = {
     cart: {
       wrapperActive: 'active',
     },
+
+    home: {
+      favorite: 'favorite'
+    },
+
     booking: {
       loading: 'loading',
       tableBooked: 'booked',
@@ -124,6 +142,7 @@ export const settings = {
   };
 
 export const templates = {
+    homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
     bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),

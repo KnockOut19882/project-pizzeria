@@ -1,0 +1,213 @@
+.section {
+    padding-top: 3%;
+    margin: 0 auto;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .box-large {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+
+        .box {
+            border: 1px solid black;
+            padding: 3% 0;
+            background-size: cover;
+            background-position-y: 60%;
+            background-position-x: right;
+            border-radius: 5px;
+            width: 48%;
+
+            &.box-one {
+                background-image: url('./../../images/assets/pizza-1.jpg');
+            }
+            
+            &.box-two {
+                background-image: url('./../../images/assets/pizza-2.jpg');
+            }
+
+        }
+        .box .button-link {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+
+            h2:hover {
+                transform: translateY(-20px);
+                transition: 0.5s ;
+            }
+        }
+
+        .box-hours {
+            border: 1px solid palevioletred;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+            background-color: $color-main;
+            padding: 2%;
+            
+            h2, h3 {
+                color: white;
+                line-height: 0.8;
+            }
+        }
+        
+    }
+
+
+}
+
+.carousel{
+    padding: 10% 0;
+
+    .carousel-cell {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* full width */
+        height: 160px; /* height of carousel */
+    
+        .carousel-img img {
+            width: 90%;
+        }
+    
+        .opinion {
+            h3, p:last-of-type {
+                font-weight: bold;
+            }
+            .quote {
+                font-style: italic;
+                font-size: 1.1rem;
+                quotes: "“" "”";
+            }
+        }
+    }
+}
+
+.gallery-home {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    .gallery-image {
+        width: 32%;
+        height: 190px;
+        position: relative;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+       .overlay {
+            top: 0;
+            left: 0;
+            display: flex;
+            position: absolute;
+            width: 100%;
+            height: 190px;
+            justify-content: center;
+            align-items: center;
+        
+
+            a {
+                text-decoration: none;
+            }
+            
+            i {
+                position: relative;
+                color: $color-light;
+                font-size: 20px;
+                transition: $transition;
+                z-index: 1;
+                display: none;
+                padding: 5px;
+            }
+
+            i.favorite {
+                font-size: 30px;
+                display: inline;
+                color: $color-main;
+            }
+
+
+            i:hover {
+                cursor: pointer;
+                color: $color-main;
+            }
+        }
+
+    }
+
+    .gallery-image::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-radius: $radius;
+        background-color: $color-dark;
+        top: 0;
+        display: none;
+    }
+
+    .gallery-image:hover::after {
+        position: absolute;
+        opacity: 60%;
+        display: block;
+    }
+
+    .gallery-image:hover .overlay i {
+        display: inline;
+    }
+
+    &.favorite {
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        transform: scale(1.1);
+        opacity: 1;
+
+        .overlay {
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        i {
+            display: inline;
+            color: $color-main;
+        }
+    }
+    
+}
+
+.footer {
+    margin: 5px auto 0 auto;
+    padding: 20px 0;
+    text-align: center;
+
+    .footer-text {
+        margin-bottom: 10px;   
+    }
+
+    .social-media {
+        a {
+            color: $color-dark;
+            margin: 0 20px;
+            transition: $transition;
+
+            &:hover {
+                color: $color-main;
+            }
+        }
+    }
+}

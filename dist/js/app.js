@@ -2,6 +2,8 @@ import {settings, select, classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
+import Carousel from './components/Carousel.js';
 
 const app = {
 
@@ -90,3 +92,9 @@ const app = {
   };
 
   app.init();
+
+const homeElem = document.querySelector('#home');
+new Home(homeElem);
+
+const carouselElem = document.querySelector('.main-carousel');
+new Carousel(carouselElem);
