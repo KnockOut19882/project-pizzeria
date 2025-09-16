@@ -98,3 +98,13 @@ new Home(homeElem);
 
 const carouselElem = document.querySelector('.main-carousel');
 new Carousel(carouselElem);
+
+
+// The following code is only available in Node.js, not in browsers.
+// If you want to monitor memory usage in the browser, use performance.memory if available:
+// if (window.performance && window.performance.memory) {
+//   setInterval(() => {
+//     const used = window.performance.memory.usedJSHeapSize;
+//     console.log(`RAM zużycie: ${(used / 1024 / 1024).toFixed(2)} MB`);
+//   }, 5000);
+// }
